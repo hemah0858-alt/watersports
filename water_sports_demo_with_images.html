@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaRush Water Sports</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:#0a1628;color:#fff;overflow-x:hidden;}
+:root{--ocean:#0077b6;--wave:#00b4d8;--foam:#90e0ef;--sand:#f4a261;}
+
+nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(10,22,40,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,180,216,0.2);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;color:var(--wave);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;transition:color 0.3s;}
+.nav-links a:hover{color:var(--wave);}
+.nav-cta{background:var(--ocean);color:#fff;border:none;padding:0.55rem 1.3rem;border-radius:4px;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:background 0.3s;font-family:'Inter',sans-serif;}
+.nav-cta:hover{background:var(--wave);}
+
+/* HERO */
+#home{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,4,94,0.85) 0%,rgba(0,119,182,0.6) 60%,rgba(0,180,216,0.3) 100%);}
+.wave-svg{position:absolute;bottom:0;width:100%;height:100px;z-index:2;}
+.hero-content{text-align:center;z-index:3;padding:2rem;}
+.hero-tag{display:inline-block;background:rgba(0,180,216,0.2);border:1px solid var(--wave);color:var(--foam);font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;padding:0.4rem 1rem;border-radius:2px;margin-bottom:1.5rem;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,6.5rem);line-height:0.92;letter-spacing:3px;margin-bottom:1.5rem;text-shadow:0 4px 20px rgba(0,0,0,0.5);}
+.hero h1 span{color:var(--wave);display:block;}
+.hero p{font-size:1rem;color:rgba(255,255,255,0.8);max-width:480px;margin:0 auto 2rem;line-height:1.7;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--sand);color:#0a1628;padding:0.85rem 2rem;border:none;font-weight:600;font-size:0.88rem;letter-spacing:1px;cursor:pointer;border-radius:4px;transition:all 0.3s;text-transform:uppercase;font-family:'Inter',sans-serif;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#fff;transform:translateY(-2px);}
+.btn-outline{background:transparent;color:#fff;padding:0.85rem 2rem;border:1px solid rgba(255,255,255,0.5);font-size:0.88rem;letter-spacing:1px;cursor:pointer;border-radius:4px;transition:all 0.3s;text-transform:uppercase;font-family:'Inter',sans-serif;text-decoration:none;display:inline-block;}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.1);}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,180,216,0.15);}
+.stat{background:#0a1628;padding:1.8rem;text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--wave);display:block;}
+.stat-label{font-size:0.7rem;color:rgba(255,255,255,0.45);letter-spacing:2px;text-transform:uppercase;margin-top:0.3rem;}
+
+/* SECTIONS */
+.section{padding:5rem 2rem;}
+.section-header{text-align:center;margin-bottom:3.5rem;}
+.section-tag{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--wave);margin-bottom:0.8rem;display:block;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:2px;}
+
+/* ACTIVITIES */
+#activities{padding:5rem 2rem;background:#0a1628;}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto;}
+.activity-card{background:#0d1f3c;border:1px solid rgba(0,180,216,0.15);border-radius:10px;overflow:hidden;transition:all 0.3s;cursor:pointer;}
+.activity-card:hover{border-color:var(--wave);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,180,216,0.1);}
+.activity-img-wrap{height:190px;overflow:hidden;position:relative;}
+.activity-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.activity-card:hover .activity-img-wrap img{transform:scale(1.08);}
+.activity-img-wrap .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.1) 0%,rgba(10,22,40,0.6) 100%);}
+.activity-body{padding:1.2rem 1.4rem 1.4rem;}
+.activity-body h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:1px;margin-bottom:0.45rem;}
+.activity-body p{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:1rem;}
+.activity-meta{display:flex;justify-content:space-between;align-items:center;}
+.price{color:var(--sand);font-weight:600;font-size:0.92rem;}
+.badge{font-size:0.62rem;letter-spacing:1px;text-transform:uppercase;padding:0.22rem 0.6rem;border-radius:2px;}
+.badge.easy{background:rgba(0,200,100,0.12);color:#00c864;border:1px solid rgba(0,200,100,0.25);}
+.badge.medium{background:rgba(244,162,97,0.12);color:var(--sand);border:1px solid rgba(244,162,97,0.25);}
+
+/* PACKAGES */
+#packages{padding:5rem 2rem;background:#060f1e;}
+.packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;}
+.package-card{background:#0d1f3c;border:1px solid rgba(0,180,216,0.15);border-radius:10px;padding:2rem;text-align:center;transition:all 0.3s;position:relative;}
+.package-card.popular{border-color:var(--wave);border-width:2px;}
+.package-card:hover{transform:translateY(-5px);}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--wave);color:#0a1628;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 1rem;border-radius:20px;font-weight:600;white-space:nowrap;}
+.package-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;margin-bottom:0.5rem;}
+.package-price{font-size:2rem;font-weight:600;color:var(--sand);margin-bottom:0.3rem;}
+.package-price span{font-size:0.85rem;color:rgba(255,255,255,0.4);font-weight:400;}
+.package-desc{font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:1.5rem;line-height:1.6;}
+.package-features{list-style:none;margin-bottom:1.8rem;text-align:left;}
+.package-features li{font-size:0.8rem;color:rgba(255,255,255,0.6);padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:0.5rem;}
+.package-features li::before{content:"✓";color:var(--wave);font-weight:600;font-size:0.85rem;}
+.pkg-btn{width:100%;padding:0.75rem;background:transparent;border:1px solid var(--wave);color:var(--wave);border-radius:4px;font-family:'Inter',sans-serif;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.pkg-btn:hover,.package-card.popular .pkg-btn{background:var(--wave);color:#0a1628;font-weight:600;}
+
+/* GALLERY */
+#gallery{padding:5rem 2rem;background:#0a1628;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;max-width:1100px;margin:0 auto;}
+.gallery-item{border-radius:8px;overflow:hidden;height:200px;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.gallery-item:hover img{transform:scale(1.06);}
+.gallery-item.tall{grid-row:span 2;height:100%;}
+
+/* BOOKING */
+#booking{position:relative;overflow:hidden;padding:6rem 2rem;text-align:center;}
+.booking-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;}
+.booking-overlay{position:absolute;inset:0;background:linear-gradient(135deg,#023e8a 0%,#0077b6 100%);opacity:0.92;}
+.booking-content{position:relative;z-index:2;}
+#booking h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,3.8rem);letter-spacing:3px;margin-bottom:1rem;}
+#booking p{color:rgba(255,255,255,0.75);margin-bottom:2.5rem;font-size:0.92rem;}
+.booking-form{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;max-width:700px;margin:0 auto;}
+.booking-form select,.booking-form input{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:0.85rem 1.2rem;border-radius:4px;font-size:0.83rem;min-width:155px;font-family:'Inter',sans-serif;}
+.booking-form select option{background:#0a1628;}
+
+/* ABOUT */
+#about{padding:5rem 2rem;background:#060f1e;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1000px;margin:0 auto;align-items:center;}
+.about-img{border-radius:12px;overflow:hidden;height:380px;}
+.about-img img{width:100%;height:100%;object-fit:cover;}
+.about-text .section-tag{text-align:left;}
+.about-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,2.8rem);letter-spacing:2px;margin-bottom:1.2rem;}
+.about-text p{font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:1rem;}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;}
+.about-feat{display:flex;align-items:flex-start;gap:0.6rem;}
+.feat-icon{color:var(--wave);font-size:1.2rem;margin-top:2px;}
+.feat-text h4{font-size:0.82rem;font-weight:600;margin-bottom:0.2rem;}
+.feat-text p{font-size:0.75rem;color:rgba(255,255,255,0.4);margin:0;}
+
+/* TESTIMONIALS */
+.testimonials{padding:5rem 2rem;background:#0a1628;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;}
+.testi-card{background:#0d1f3c;border:1px solid rgba(0,180,216,0.1);border-radius:10px;padding:1.5rem;}
+.stars{color:var(--sand);font-size:0.95rem;margin-bottom:1rem;letter-spacing:2px;}
+.testi-card p{font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:1.2rem;font-style:italic;}
+.testi-author{font-weight:500;font-size:0.83rem;color:var(--foam);}
+.testi-loc{font-size:0.72rem;color:rgba(255,255,255,0.35);}
+
+/* CONTACT */
+#contact{padding:5rem 2rem;background:#060f1e;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1000px;margin:0 auto;}
+.contact-info h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:2px;margin-bottom:1rem;}
+.contact-info p{font-size:0.83rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:1.5rem;}
+.contact-item{display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;}
+.contact-icon{width:36px;height:36px;background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.contact-item span{font-size:0.82rem;color:rgba(255,255,255,0.6);}
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.contact-form input,.contact-form textarea,.contact-form select{background:#0d1f3c;border:1px solid rgba(0,180,216,0.2);color:#fff;padding:0.85rem 1rem;border-radius:6px;font-size:0.83rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.3s;}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--wave);}
+.contact-form textarea{resize:vertical;min-height:120px;}
+.contact-form button{background:var(--wave);color:#0a1628;border:none;padding:0.9rem;border-radius:6px;font-weight:600;font-size:0.88rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.3s;}
+.contact-form button:hover{background:var(--foam);}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:0.6rem;background:#25d366;color:#fff;border:none;padding:0.75rem;border-radius:6px;font-weight:600;font-size:0.85rem;cursor:pointer;font-family:'Inter',sans-serif;margin-top:0.5rem;transition:background 0.3s;text-decoration:none;}
+.whatsapp-btn:hover{background:#1ebe5d;}
+
+/* FOOTER */
+footer{background:#020b17;padding:3rem 2rem 1.5rem;border-top:1px solid rgba(0,180,216,0.12);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;max-width:1000px;margin:0 auto 2rem;}
+.footer-brand .logo{font-size:1.5rem;margin-bottom:1rem;display:block;}
+.footer-brand p{font-size:0.78rem;color:rgba(255,255,255,0.38);line-height:1.7;}
+.footer-col h4{font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--wave);margin-bottom:1rem;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:0.5rem;}
+.footer-col a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+.footer-col a:hover{color:var(--wave);}
+.footer-bottom{text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.22);border-top:1px solid rgba(255,255,255,0.05);padding-top:1.5rem;max-width:1000px;margin:0 auto;}
+
+@media(max-width:768px){
+  .activities-grid,.testi-grid,.footer-grid,.gallery-grid,.packages-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .nav-links{display:none;}
+  .gallery-item.tall{grid-row:span 1;height:200px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="javascript:void(0)" onclick="scrollTo(0,0)" class="logo">AquaRush</a>
+  <ul class="nav-links">
+    <li><a href="javascript:void(0)" onclick="scrollToSection('activities')" >Activities</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollToSection('packages')" >Packages</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollToSection('gallery')" >Gallery</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollToSection('about')" >About</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollToSection('contact')" >Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&q=80" alt="Water sports hero">
+  <div class="hero-overlay"></div>
+  <svg class="wave-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C240,90 480,10 720,50 C960,90 1200,10 1440,50 L1440,100 L0,100 Z" fill="#0a1628"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-tag">📍 Maldives Premier Water Sports Hub</div>
+    <h1 class="hero">Ride The <span>Wild Waves</span></h1>
+    <p>Experience the ultimate thrill on water — from surfing and scuba diving to jet skiing and parasailing. Adventure awaits on the Coromandel Coast.</p>
+    <div class="hero-btns">
+      <button onclick="scrollToSection('booking')" class="btn-primary">Book an Adventure</button>
+      <button onclick="scrollToSection('activities')" class="btn-outline">View All Activities</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><span class="stat-num">5000+</span><span class="stat-label">Happy Adventurers</span></div>
+  <div class="stat"><span class="stat-num">12</span><span class="stat-label">Activities Offered</span></div>
+  <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Years Experience</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Safety Certified</span></div>
+</div>
+
+<!-- ACTIVITIES -->
+<section id="activities">
+  <div class="section-header">
+    <span class="section-tag">What We Offer</span>
+    <h2 class="section-title">Our Adventures</h2>
+  </div>
+  <div class="activities-grid">
+    <div class="activity-card">
+      <div class="activity-img-wrap">
+        <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&q=80" alt="Surfing">
+        <div class="overlay"></div>
+      </div>
+      <div class="activity-body">
+        <h3>Surfing</h3>
+        <p>Catch the perfect wave with our expert instructors. Suitable for all levels from beginners to pros.</p>
+        <div class="activity-meta"><span class="price">₹1,200 / session</span><span class="badge easy">Beginner OK</span></div>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-img-wrap">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Scuba Diving">
+        <div class="overlay"></div>
+      </div>
+      <div class="activity-body">
+        <h3>Scuba Diving</h3>
+        <p>Explore the breathtaking underwater world of the Indian Ocean with certified dive masters.</p>
+        <div class="activity-meta"><span class="price">₹3,500 / dive</span><span class="badge medium">Intermediate</span></div>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-img-wrap">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Jet Skiing">
+        <div class="overlay"></div>
+      </div>
+      <div class="activity-body">
+        <h3>Jet Skiing</h3>
+        <p>Feel the speed and adrenaline as you race across the open water on a high-powered jet ski.</p>
+        <div class="activity-meta"><span class="price">₹800 / 30 min</span><span class="badge easy">Beginner OK</span></div>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-img-wrap">
+        <img src="https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=600&q=80" alt="Kayaking">
+        <div class="overlay"></div>
+      </div>
+      <div class="activity-body">
+        <h3>Kayaking</h3>
+        <p>Paddle through serene backwaters and coastal mangroves on a peaceful kayaking journey.</p>
+        <div class="activity-meta"><span class="price">₹600 / hour</span><span class="badge easy">Beginner OK</span></div>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-img-wrap">
+        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80" alt="Parasailing">
+        <div class="overlay"></div>
+      </div>
+      <div class="activity-body">
+        <h3>Parasailing</h3>
+        <p>Soar above the ocean and enjoy a bird's-eye view of the stunning Tamil Nadu coastline.</p>
+        <div class="activity-meta"><span class="price">₹2,000 / flight</span><span class="badge medium">Some Experience</span></div>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-img-wrap">
+        <img src="https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=600&q=80" alt="Boat Tour">
+        <div class="overlay"></div>
+      </div>
+      <div class="activity-body">
+        <h3>Boat Tours</h3>
+        <p>Explore hidden coves and scenic islands with our guided sunset and island-hopping tours.</p>
+        <div class="activity-meta"><span class="price">₹1,800 / person</span><span class="badge easy">All Ages</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-header">
+    <span class="section-tag">Best Value</span>
+    <h2 class="section-title">Our Packages</h2>
+  </div>
+  <div class="packages-grid">
+    <div class="package-card">
+      <div class="package-name">Starter</div>
+      <div class="package-price">₹1,999 <span>/ person</span></div>
+      <div class="package-desc">Perfect for first-timers wanting to try water sports.</div>
+      <ul class="package-features">
+        <li>1 Activity of Choice</li>
+        <li>Safety Gear Included</li>
+        <li>30-min Instructor Session</li>
+        <li>Changing Room Access</li>
+      </ul>
+      <button class="pkg-btn">Book Starter</button>
+    </div>
+    <div class="package-card popular">
+      <div class="popular-badge">Most Popular</div>
+      <div class="package-name">Adventure</div>
+      <div class="package-price">₹4,999 <span>/ person</span></div>
+      <div class="package-desc">Our most loved package — 3 thrilling activities in one day.</div>
+      <ul class="package-features">
+        <li>3 Activities of Choice</li>
+        <li>Full Safety Equipment</li>
+        <li>Certified Instructor</li>
+        <li>Lunch & Refreshments</li>
+        <li>Photo & Video Capture</li>
+      </ul>
+      <button class="pkg-btn">Book Adventure</button>
+    </div>
+    <div class="package-card">
+      <div class="package-name">Ultimate</div>
+      <div class="package-price">₹8,999 <span>/ person</span></div>
+      <div class="package-desc">All-day experience with every activity we offer.</div>
+      <ul class="package-features">
+        <li>All 6 Activities</li>
+        <li>Premium Equipment</li>
+        <li>Private Instructor</li>
+        <li>Full Meals Included</li>
+        <li>HD Photo + Video Package</li>
+        <li>Free Return Visit</li>
+      </ul>
+      <button class="pkg-btn">Book Ultimate</button>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header">
+    <span class="section-tag">Moments</span>
+    <h2 class="section-title">From The Water</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Beach">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1466720326480-4ae37f5b4c0f?w=600&q=80" alt="Water">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?w=600&q=80" alt="Ocean fun">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1455264745730-cb3b76250dd8?w=600&q=80" alt="Surfing">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80" alt="Coast">
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <img class="booking-bg" src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1200&q=60" alt="">
+  <div class="booking-overlay"></div>
+  <div class="booking-content">
+    <h2>Book Your Adventure</h2>
+    <p>Choose your activity, pick a date, and we'll handle the rest. Same-day bookings available!</p>
+    <div class="booking-form">
+      <select>
+        <option>Select Activity</option>
+        <option>Surfing</option>
+        <option>Scuba Diving</option>
+        <option>Jet Skiing</option>
+        <option>Kayaking</option>
+        <option>Parasailing</option>
+        <option>Boat Tours</option>
+      </select>
+      <input type="date">
+      <select>
+        <option>1 Person</option>
+        <option>2 People</option>
+        <option>3–5 People</option>
+        <option>Group (6+)</option>
+      </select>
+      <button class="btn-primary">Check Availability</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&q=80" alt="About AquaRush">
+    </div>
+    <div class="about-text">
+      <span class="section-tag">Our Story</span>
+      <h2>Born From A Love Of The Ocean</h2>
+      <p>AquaRush was founded in 2017 by a group of water sports enthusiasts who wanted to share the magic of the Tamil Nadu coastline with the world.</p>
+      <p>From a single surfboard rental to a full-service water sports hub, we've grown into Tamil Nadu's most trusted adventure destination — all while keeping safety and fun at the heart of everything we do.</p>
+      <div class="about-features">
+        <div class="about-feat">
+          <span class="feat-icon">🛡️</span>
+          <div class="feat-text"><h4>100% Safety Certified</h4><p>All staff are certified lifeguards</p></div>
+        </div>
+        <div class="about-feat">
+          <span class="feat-icon">🏆</span>
+          <div class="feat-text"><h4>Award Winning</h4><p>Best Adventure Spot TN 2023</p></div>
+        </div>
+        <div class="about-feat">
+          <span class="feat-icon">🌊</span>
+          <div class="feat-text"><h4>Expert Instructors</h4><p>10+ years average experience</p></div>
+        </div>
+        <div class="about-feat">
+          <span class="feat-icon">🌿</span>
+          <div class="feat-text"><h4>Eco Friendly</h4><p>We protect our ocean ecosystem</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <span class="section-tag">Reviews</span>
+    <h2 class="section-title">What People Say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"The scuba diving experience was absolutely incredible. The instructors made us feel completely safe the whole time."</p>
+      <div class="testi-author">Priya Krishnan</div>
+      <div class="testi-loc">Chennai, Tamil Nadu</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Came for jet skiing and left booking parasailing too! Best water sports in Tamil Nadu, hands down."</p>
+      <div class="testi-author">Arjun Mehta</div>
+      <div class="testi-loc">Bangalore, Karnataka</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Perfect family outing! My kids loved the kayaking and the boat tour. Staff were friendly and very patient."</p>
+      <div class="testi-author">Santhosh Rajan</div>
+      <div class="testi-loc">Madurai, Tamil Nadu</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title">Contact Us</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>Let's Plan Your Adventure</h2>
+      <p>Have questions about our activities or want to book for a large group? Reach out and our team will get back to you within 2 hours.</p>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <span>+91 98400 12345</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <span>info@aquarush.in</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <span>Rameswaram Beach, Tamil Nadu – 623526</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <span>Open Daily: 7:00 AM – 7:00 PM</span>
+      </div>
+      <br>
+      <a href="https://wa.me/919840012345" class="whatsapp-btn" target="_blank">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <select>
+          <option value="">Select Activity Interest</option>
+          <option>Surfing</option>
+          <option>Scuba Diving</option>
+          <option>Jet Skiing</option>
+          <option>Kayaking</option>
+          <option>Parasailing</option>
+          <option>Boat Tours</option>
+          <option>Group Booking</option>
+        </select>
+        <textarea placeholder="Your message or any special requirements..."></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="javascript:void(0)" onclick="scrollTo(0,0)" class="logo">AquaRush</a>
+      <p>Tamil Nadu's most thrilling water sports destination. Safety certified, adventure guaranteed. Located on the beautiful Coromandel Coast.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Activities</h4>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('activities')" >Surfing</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('activities')" >Scuba Diving</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('activities')" >Jet Skiing</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('activities')" >Kayaking</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('activities')" >Parasailing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('packages')" >Packages</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('gallery')" >Gallery</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('about')" >About Us</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('booking')" >Book Now</a></li>
+        <li><a href="javascript:void(0)" onclick="scrollToSection('contact')" >Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 AquaRush Water Sports. All rights reserved. | Designed by YourAgency</div>
+</footer>
+
+<script>
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior: "smooth"});
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  alert('Thank you! We will contact you within 2 hours. 🌊');
+  e.target.reset();
+}
+</script>
+
+</body>
+</html>
